@@ -55,6 +55,23 @@ button{
 <h1>🔐 Descifra el Idioma de Esteban</h1>
 
 <div class="caja">
+<h2>Regla 2</h2>
+<p></p>
+
+<input id="regla2" style="width:90%;">
+
+<h2>Regla 3</h2>
+<p>¿Qué ocurre con los puntos y las comas?</p>
+
+<input id="regla3" style="width:90%;">
+
+<br><br>
+
+<button onclick="verificarTodo()">
+Verificar todas las reglas
+</button>
+
+<h3 id="resultadoFinal"></h3>
 <h2>Texto original</h2>
 <p>
 El veloz murciélago hindú comía feliz cardillo y kiwi.
@@ -107,6 +124,69 @@ r.className="correcto";
 }else{
 r.innerHTML="❌ "+bien+"/4 correctas";
 r.className="incorrecto";
+}
+}
+<script>
+function verificar(){
+
+let bien = 0;
+
+if(document.getElementById("a").value.toLowerCase()=="u") bien++;
+if(document.getElementById("b").value.toLowerCase()=="z") bien++;
+if(document.getElementById("c").value.toLowerCase()=="y") bien++;
+if(document.getElementById("d").value.toLowerCase()=="x") bien++;
+
+const r = document.getElementById("resultado");
+
+if(bien==4){
+r.innerHTML="✅ Letras correctas";
+r.className="correcto";
+}else{
+r.innerHTML="❌ "+bien+"/4 correctas";
+r.className="incorrecto";
+}
+}
+
+function verificarTodo(){
+
+let letras = 0;
+
+if(document.getElementById("a").value.toLowerCase()=="u") letras++;
+if(document.getElementById("b").value.toLowerCase()=="z") letras++;
+if(document.getElementById("c").value.toLowerCase()=="y") letras++;
+if(document.getElementById("d").value.toLowerCase()=="x") letras++;
+
+const regla2 =
+document.getElementById("regla2").value.toLowerCase();
+
+const regla3 =
+document.getElementById("regla3").value.toLowerCase();
+
+let mayusculas =
+regla2.includes("mayúsc") ||
+regla2.includes("mayusc");
+
+let puntos =
+regla3.includes("punto") &&
+regla3.includes("coma");
+
+const resultado =
+document.getElementById("resultadoFinal");
+
+if(letras==4 && mayusculas && puntos){
+
+resultado.innerHTML =
+"🏆 ¡Idioma descifrado!";
+
+resultado.className="correcto";
+
+}else{
+
+resultado.innerHTML =
+"❌ Aún faltan reglas por descubrir.";
+
+resultado.className="incorrecto";
+
 }
 }
 </script>
