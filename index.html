@@ -61,7 +61,7 @@ button{
 <input id="regla2" style="width:90%;">
 
 <h2>Regla 3</h2>
-<p>¿Qué ocurre con los puntos y las comas?</p>
+<p></p>
 
 <input id="regla3" style="width:90%;">
 
@@ -91,10 +91,7 @@ qU YIVÜONU HEYUZU OQ JUDEWÓÑ XOHKÁJ XOQ MUQOÑLAO XO MUSU,
 <h2>Regla 1</h2>
 <p>Completa algunas equivalencias:</p>
 
-a = <input id="a">
-b = <input id="b">
-c = <input id="c">
-d = <input id="d">
+<div id="tablaLetras"></div>
 
 <br><br>
 
@@ -106,7 +103,55 @@ Verificar
 
 </div>
 
+
+    function verificarRegla1(){
+
+    let correctas = 0;
+
+    for(let i=0;i<letras.length;i++){
+
+        let valor =
+        document.getElementById("letra"+i)
+        .value
+        .toLowerCase();
+
+        if(valor === respuestas[i]){
+            correctas++;
+        }
+
+    }
+
+    alert(
+      "Regla 1: " +
+      correctas +
+      "/27 descubiertas"}
+    );
+        <button onclick="verificarRegla1()">
+Verificar Regla 1
+</button>
 <script>
+    const letras = [
+"a","b","c","d","e","f","g","h","i","j","k","l","m",
+"n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"
+];
+
+const respuestas = [
+"u","z","y","x","o","w","v","t","i","s","r","q","p",
+"ñ","n","e","m","l","k","j","h","a","g","f","d","c","b"
+];
+
+let html = "";
+
+for(let i=0;i<letras.length;i++){
+    html += `
+    <div>
+        ${letras[i]} =
+        <input id="letra${i}" maxlength="1">
+    </div>
+    `;
+}
+
+document.getElementById("tablaLetras").innerHTML = html;
 function verificar(){
 
 let bien = 0;
