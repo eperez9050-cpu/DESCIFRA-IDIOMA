@@ -1,34 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Descifra el Idioma de Esteban</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#121212;
+    color:white;
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+}
+
+.caja{
+    background:#1e1e1e;
+    padding:15px;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+textarea{
+    width:100%;
+    height:120px;
+}
+
+input{
+    padding:8px;
+    margin:4px;
+}
+
+button{
+    padding:10px;
+    cursor:pointer;
+}
+
+.correcto{
+    color:lime;
+}
+
+.incorrecto{
+    color:red;
+}
+</style>
 </head>
 <body>
-<h1>Descifra el Idioma de Esteban</h1>
 
-<p>Español:</p>
-<p>messi</p>
+<h1>🔐 Descifra el Idioma de Esteban</h1>
 
-<p>Idioma secreto:</p>
-<p>POJJI</p>
+<div class="caja">
+<h2>Texto original</h2>
+<p>
+El veloz murciélago hindú comía feliz cardillo y kiwi.
+La cigüeña tocaba el saxofón detrás del palenque de paja.
+</p>
+</div>
 
-<h2>Prueba</h2>
-<input id="respuesta" placeholder="Escribe la traducción de calvo">
-<button onclick="verificar()">Verificar</button>
+<div class="caja">
+<h2>Texto traducido</h2>
+<p>
+oQ GOQEB PAKYIÓQUVE TIÑXÚ YEPÍU WOQIB YUKXIQQE C RIFI,
+qU YIVÜONU HEYUZU OQ JUDEWÓÑ XOHKÁJ XOQ MUQOÑLAO XO MUSU,
+</p>
+</div>
 
-<p id="resultado"></p>
+<div class="caja">
+<h2>Regla 1</h2>
+<p>Completa algunas equivalencias:</p>
+
+a = <input id="a">
+b = <input id="b">
+c = <input id="c">
+d = <input id="d">
+
+<br><br>
+
+<button onclick="verificar()">
+Verificar
+</button>
+
+<h3 id="resultado"></h3>
+
+</div>
 
 <script>
-function verificar() {
-  let r = document.getElementById("respuesta").value;
+function verificar(){
 
-  if (r === "YUQGE") {
-    document.getElementById("resultado").innerHTML = "✅ Correcto";
-  } else {
-    document.getElementById("resultado").innerHTML = "❌ Incorrecto";
-  }
+let bien = 0;
+
+if(document.getElementById("a").value.toLowerCase()=="u") bien++;
+if(document.getElementById("b").value.toLowerCase()=="z") bien++;
+if(document.getElementById("c").value.toLowerCase()=="y") bien++;
+if(document.getElementById("d").value.toLowerCase()=="x") bien++;
+
+const r = document.getElementById("resultado");
+
+if(bien==4){
+r.innerHTML="✅ ¡Correcto!";
+r.className="correcto";
+}else{
+r.innerHTML="❌ "+bien+"/4 correctas";
+r.className="incorrecto";
+}
 }
 </script>
+
 </body>
 </html>
