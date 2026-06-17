@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -15,7 +16,7 @@ body{
     padding:20px;
 }
 
-h1{
+h1,h2{
     text-align:center;
 }
 
@@ -26,19 +27,22 @@ h1{
     margin:15px 0;
 }
 
-textarea{
-    width:100%;
-    height:120px;
-}
-
 input{
-    padding:8px;
-    margin:4px;
+    width:40px;
+    margin:3px;
+    text-align:center;
 }
 
 button{
     padding:10px;
+    margin-top:10px;
     cursor:pointer;
+}
+
+#tablaLetras{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:5px;
 }
 
 .correcto{
@@ -49,88 +53,73 @@ button{
     color:red;
 }
 </style>
+
 </head>
 <body>
 
 <h1>🔐 Descifra el Idioma de Esteban</h1>
 
 <div class="caja">
+<h2>Texto Original</h2>
+
+<p>
+El veloz murciélago hindú comía feliz cardillo y kiwi.
+La cigüeña tocaba el saxofón detrás del palenque de paja.
+</p>
+
+<h2>Texto Traducido</h2>
+
+<p>
+oQ GOQEB PAKYIÓQUVE TIÑXÚ YEPÍU WOQIB YUKXIQQE C RIFI,
+qU YIVÜONU HEYUZU OQ JUDEWÓÑ XOHKÁJ XOQ MUQOÑLAO XO MUSU,
+</p>
+
+<p><b>Existen 3 reglas ocultas.</b></p>
+</div>
+
+<div class="caja">
+<h2>Regla 1</h2>
+
+<p>Completa todas las equivalencias:</p>
+
+<div id="tablaLetras"></div>
+
+<button onclick="verificarRegla1()">
+Verificar Regla 1
+</button>
+
+<p id="resultado1"></p>
+</div>
+
+<div class="caja">
 <h2>Regla 2</h2>
-<p></p>
+
+<p>Describe qué ocurre con mayúsculas y minúsculas:</p>
 
 <input id="regla2" style="width:90%;">
 
+</div>
+
+<div class="caja">
 <h2>Regla 3</h2>
-<p></p>
+
+<p>Describe qué ocurre con puntos y comas:</p>
 
 <input id="regla3" style="width:90%;">
 
 <br><br>
 
 <button onclick="verificarTodo()">
-Verificar todas las reglas
+Verificar Todo
 </button>
 
-<h3 id="resultadoFinal"></h3>
-<h2>Texto original</h2>
-<p>
-El veloz murciélago hindú comía feliz cardillo y kiwi.
-La cigüeña tocaba el saxofón detrás del palenque de paja.
-</p>
-</div>
-
-<div class="caja">
-<h2>Texto traducido</h2>
-<p>
-oQ GOQEB PAKYIÓQUVE TIÑXÚ YEPÍU WOQIB YUKXIQQE C RIFI,
-qU YIVÜONU HEYUZU OQ JUDEWÓÑ XOHKÁJ XOQ MUQOÑLAO XO MUSU,
-</p>
-</div>
-
-<div class="caja">
-<h2>Regla 1</h2>
-<p>Completa algunas equivalencias:</p>
-
-<div id="tablaLetras"></div>
-
-<br><br>
-
-<button onclick="verificar()">
-Verificar
-</button>
-
-<h3 id="resultado"></h3>
+<p id="resultadoFinal"></p>
 
 </div>
 
-
-    function verificarRegla1(){
-
-    let correctas = 0;
-
-    for(let i=0;i<letras.length;i++){
-
-        let valor =
-        document.getElementById("letra"+i)
-        .value
-        .toLowerCase();
-
-        if(valor === respuestas[i]){
-            correctas++;
-        }
-
-    }
-
-    alert(
-      "Regla 1: " +
-      correctas +
-      "/27 descubiertas"}
-    );
-        <button onclick="verificarRegla1()">
-Verificar Regla 1
-</button>
 <script>
-    const letras = [
+
+const letras = [
 "a","b","c","d","e","f","g","h","i","j","k","l","m",
 "n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"
 ];
@@ -152,89 +141,89 @@ for(let i=0;i<letras.length;i++){
 }
 
 document.getElementById("tablaLetras").innerHTML = html;
-function verificar(){
 
-let bien = 0;
+function verificarRegla1(){
 
-if(document.getElementById("a").value.toLowerCase()=="u") bien++;
-if(document.getElementById("b").value.toLowerCase()=="z") bien++;
-if(document.getElementById("c").value.toLowerCase()=="y") bien++;
-if(document.getElementById("d").value.toLowerCase()=="x") bien++;
+    let correctas = 0;
 
-const r = document.getElementById("resultado");
+    for(let i=0;i<letras.length;i++){
 
-if(bien==4){
-r.innerHTML="✅ ¡Correcto!";
-r.className="correcto";
-}else{
-r.innerHTML="❌ "+bien+"/4 correctas";
-r.className="incorrecto";
-}
-}
-<script>
-function verificar(){
+        let valor =
+        document.getElementById("letra"+i)
+        .value
+        .toLowerCase();
 
-let bien = 0;
+        if(valor === respuestas[i]){
+            correctas++;
+        }
+    }
 
-if(document.getElementById("a").value.toLowerCase()=="u") bien++;
-if(document.getElementById("b").value.toLowerCase()=="z") bien++;
-if(document.getElementById("c").value.toLowerCase()=="y") bien++;
-if(document.getElementById("d").value.toLowerCase()=="x") bien++;
+    const r =
+    document.getElementById("resultado1");
 
-const r = document.getElementById("resultado");
-
-if(bien==4){
-r.innerHTML="✅ Letras correctas";
-r.className="correcto";
-}else{
-r.innerHTML="❌ "+bien+"/4 correctas";
-r.className="incorrecto";
-}
+    r.innerHTML =
+    "Regla 1: " +
+    correctas +
+    "/27 descubiertas";
 }
 
 function verificarTodo(){
 
-let letras = 0;
+    let correctas = 0;
 
-if(document.getElementById("a").value.toLowerCase()=="u") letras++;
-if(document.getElementById("b").value.toLowerCase()=="z") letras++;
-if(document.getElementById("c").value.toLowerCase()=="y") letras++;
-if(document.getElementById("d").value.toLowerCase()=="x") letras++;
+    for(let i=0;i<letras.length;i++){
 
-const regla2 =
-document.getElementById("regla2").value.toLowerCase();
+        let valor =
+        document.getElementById("letra"+i)
+        .value
+        .toLowerCase();
 
-const regla3 =
-document.getElementById("regla3").value.toLowerCase();
+        if(valor === respuestas[i]){
+            correctas++;
+        }
+    }
 
-let mayusculas =
-regla2.includes("mayúsc") ||
-regla2.includes("mayusc");
+    let regla2 =
+    document.getElementById("regla2")
+    .value
+    .toLowerCase();
 
-let puntos =
-regla3.includes("punto") &&
-regla3.includes("coma");
+    let regla3 =
+    document.getElementById("regla3")
+    .value
+    .toLowerCase();
 
-const resultado =
-document.getElementById("resultadoFinal");
+    let mayusculas =
+    regla2.includes("may") ||
+    regla2.includes("min");
 
-if(letras==4 && mayusculas && puntos){
+    let puntos =
+    regla3.includes("punto") &&
+    regla3.includes("coma");
 
-resultado.innerHTML =
-"🏆 ¡Idioma descifrado!";
+    const resultado =
+    document.getElementById("resultadoFinal");
 
-resultado.className="correcto";
-
-}else{
-
-resultado.innerHTML =
-"❌ Aún faltan reglas por descubrir.";
-
-resultado.className="incorrecto";
-
+    if(
+        correctas === 27 &&
+        mayusculas &&
+        puntos
+    ){
+        resultado.innerHTML =
+        "🏆 ¡IDIOMA DESCIFRADO AL 100%!";
+        resultado.className =
+        "correcto";
+    }
+    else{
+        resultado.innerHTML =
+        "❌ Aún faltan reglas por descubrir.";
+        resultado.className =
+        "incorrecto";
+    }
 }
-}
+
 </script>
 
 </body>
 </html>
+
