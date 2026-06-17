@@ -223,6 +223,32 @@ function verificarTodo(){
 }
 
 </script>
+    window.onload = function(){
+
+    for(let i=0;i<27;i++){
+
+        let valor =
+        localStorage.getItem("letra"+i);
+
+        if(valor){
+            document.getElementById("letra"+i).value =
+            valor;
+        }
+
+        document
+        .getElementById("letra"+i)
+        .addEventListener("input",function(){
+
+            localStorage.setItem(
+                "letra"+i,
+                this.value
+            );
+
+        });
+
+    }
+
+};
 
 </body>
 </html>
